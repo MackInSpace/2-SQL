@@ -47,6 +47,10 @@ CREATE TABLE suppliers (
     name TEXT NOT NULL
 );
 
+CREATE TABLE customers (
+    id SERIAL PRIMARY KEY,
+    company_name TEXT NOT NULL
+);
 
 ---
 --- Add foreign key constraints
