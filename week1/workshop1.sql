@@ -72,6 +72,29 @@ CREATE TABLE orders_products (
     discount NUMERIC NOT NULL,
     PRIMARY KEY (product_id, order_id)
 );
+
+CREATE TABLE territory (
+    id SERIAL PRIMARY KEY,
+    description TEXT NOT NULL
+);
+
+CREATE TABLE employee_territories (
+    employee_id INT NOT NULL,
+    territory_id INT NOT NULL,
+    PRIMARY KEY (employee_id, territory_id)
+);
+
+CREATE TABLE offices (
+    id SERIAL PRIMARY KEY,
+    address_line TEXT NOT NULL,
+    territory_id INT NOT NULL
+);
+
+CREATE TABLE us_states (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    abbreviation CHARACTER(2) NOT NULL  
+);
 ---
 --- Add foreign key constraints
 ---
@@ -85,4 +108,42 @@ REFERENCES categories (id);
 
 
 -- TODO create more constraints here...
+ALTER TABLE orders
+ADD CONSTRAINT fk_orders_customers 
+FOREIGN KEY (customer_id) 
+REFERENCES customers (id);
 
+ALTER TABLE orders
+ADD CONSTRAINT fk_orders_employees 
+FOREIGN KEY (employee_id) 
+REFERENCES employees (id);
+
+ALTER TABLE products
+ADD CONSTRAINT fk_products_suppliers 
+FOREIGN KEY (supplier_id) 
+REFERENCES suppliers (id);
+
+ALTER TABLE orders_products
+ADD CONSTRAINT fk_orders_products_orders 
+FOREIGN KEY (order_id) 
+REFERENCES orders (id);
+
+ALTER TABLE orders_products
+ADD CONSTRAINT fk_orders_products_products 
+FOREIGN KEY (product_id) 
+REFERENCES products (id);
+
+ALTER TABLE employee_territories
+ADD CONSTRAINT fk_employee_territories_employees 
+FOREIGN KEY (employee_id) 
+REFERENCES employees (id);
+
+ALTER TABLE employee_territories
+ADD CONSTRAINT fk_employee_territories_territories 
+FOREIGN KEY (territory_id) 
+REFERENCES territory (id);
+
+ALTER TABLE offices
+ADD CONSTRAINT fk_offices_territories 
+FOREIGN KEY (territory_id) 
+REFERENCES territory (id);
