@@ -42,6 +42,10 @@ CREATE TABLE categories (
 );
 
 -- TODO create more tables here...
+CREATE TABLE suppliers (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
 
 
 ---
