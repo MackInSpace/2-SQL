@@ -64,6 +64,14 @@ CREATE TABLE orders (
     customer_id INT NOT NULL,
     employee_id INT NULL
 );
+
+CREATE TABLE orders_products (
+    product_id INTEGER, 
+    order_id INTEGER,
+    quantity INT NOT NULL,
+    discount NUMERIC NOT NULL,
+    PRIMARY KEY (product_id, order_id)
+);
 ---
 --- Add foreign key constraints
 ---
