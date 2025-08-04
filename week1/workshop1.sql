@@ -52,6 +52,18 @@ CREATE TABLE customers (
     company_name TEXT NOT NULL
 );
 
+CREATE TABLE employees (
+    id SERIAL PRIMARY KEY,
+    first_name TEXT NOT NULL,
+    last_name TEXT NOT NULL
+);
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    date DATE NULL,
+    customer_id INT NOT NULL,
+    employee_id INT NULL
+);
 ---
 --- Add foreign key constraints
 ---
