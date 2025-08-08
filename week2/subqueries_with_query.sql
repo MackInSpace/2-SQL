@@ -1,4 +1,4 @@
-SELECT  last_name FROM professors
+"""SELECT  last_name FROM professors
 UNION ALL
 SELECT last_name FROM students;
 
@@ -59,4 +59,20 @@ WITH PEOPLE AS (
 SELECT occupation, first_name, last_name, d.code
 FROM people
 LEFT JOIN departments d
-ON department_id = d.id;
+ON department_id = d.id;"""
+
+"""WITH names AS (
+    SELECT company_name FROM customers 
+    UNION ALL 
+    SELECT company_name FROM suppliers 
+    UNION ALL 
+    SELECT company_name FROM shippers
+) SELECT company_name FROM names
+WHERE company_name LIKE 'D%';
+
+SELECT p.product_name FROM products p 
+WHERE EXISTS(
+    SELECT * FROM categories c 
+    WHERE c.category_id = p.category_id 
+    AND c.category_name LIKE 'C%'
+);"""
