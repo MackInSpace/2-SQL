@@ -123,3 +123,8 @@ JOIN employees e ON el.employee_id = e.id;"""
 """SELECT e.*, el.description, el.created_at
 FROM employees_log el
 JOIN employees e ON el.employee_id = e.id;"""
+
+"DROP TABLE employees CASCADE;
+DROP TABLE employees_log;
+DROP FUNCTION log_new_employee;
+DROP FUNCTION log_salary_update;"
