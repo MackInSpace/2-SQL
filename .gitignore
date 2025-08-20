@@ -130,3 +130,6 @@ tmp
 
 # Jetbrains
 .idea/
+
+# Large moma file
+moma_dump.sql
