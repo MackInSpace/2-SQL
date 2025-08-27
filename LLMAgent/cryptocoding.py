@@ -61,3 +61,22 @@ class MLTrader(Strategy):
                     print(Fore.LIGHTMAGENTA_EX + str(order) + Fore.RESET)
                     self.submit_order(order)
                     self.last_trade = "sell"
+
+if __name__ == "__main__":
+    start_date = datetime(2023, 1, 1)
+    end_date = datetime(2024, 11, 1)
+    exchange_id = "kraken"
+    kwargs = {
+        "exchange_id": exchange_id,
+    }
+    CcxtBacktesting.MIN_TIMESTEP = 'day'
+
+    results, strat_obj = MLTrader.run_backtest(
+        CcxtBacktesting,
+        start_date, 
+        end_date,
+        benchmark_asset="BTC/USD",
+        quote_asset=Asset(symbol='USD', asset_type="crypto"),
+        parameters={"cash_at_risk": 0.25, "coin": "BTC"},
+        **kwargs
+    )
