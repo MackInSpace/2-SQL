@@ -38,3 +38,26 @@ class MLTrader(Strategy):
                 elif choice == 1:
                     if self.last_trade == "sell":
                         self.sell_all()
+                    order = self.create_order(
+                        Asset(symbol=self.coin, asset_type=Asset.AssetType.CRYPTO),
+                        quantity,
+                        "buy",
+                        type="market",
+                        quote=Asset(symbol='USD', asset_type="crypto"),
+                    )
+                    print(Fore.LIGHTMAGENTA_EX + str(order) + Fore.RESET)
+                    self.submit_order(order)
+                    self.last_trade = "buy"
+                elif choice == 2:
+                    if self.last_trade == "buy":
+                        self.sell_all()
+                    order = self.create_order(
+                        Asset(symbol=self.coin, asset_type=Asset.AssetType.CRYPTO),
+                        quantity,
+                        "sell",
+                        type="market",
+                        quote=Asset(symbol='USD', asset_type="crypto"),
+                    )
+                    print(Fore.LIGHTMAGENTA_EX + str(order) + Fore.RESET)
+                    self.submit_order(order)
+                    self.last_trade = "sell"
